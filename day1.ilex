@@ -1,0 +1,37 @@
+use { isDigit } from <ascii>
+
+fn getCalibrationValue(line) {
+    if (line == null) {
+        return 0
+    }
+    
+    digits := ''
+    for (i := 0; i < line.len(); i++) {
+        if (isDigit(line[i])) {
+            digits += line[i]
+            break
+        }
+    }
+    
+    for ( i := line.len() - 1; i >= 0; i--) {
+        if (isDigit(line[i])) {
+            digits += line[i]
+            break
+        }
+    }
+    
+    print(digits, line)
+    return digits.toNumber()
+}
+
+total := 0
+
+withFile ('input_day_1.txt', 'r') {
+    line := file.readln()
+    while (line != null) {
+        total += getCalibrationValue(line)
+        line = file.readln()
+    }
+}
+
+println(total)
